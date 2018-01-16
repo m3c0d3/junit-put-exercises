@@ -11,15 +11,27 @@ import java.util.List;
  */
 public class StringUtils {
 
-	public static String reverse(String s) {
-		List<String> tempArray = new ArrayList<String>(s.length());
-		for (int i = 0; i < s.length(); i++) {
-			tempArray.add(s.substring(i, i + 1));
-		}
-		StringBuilder reversedString = new StringBuilder(s.length());
-		for (int i = tempArray.size() - 1; i >= 0; i--) {
-			reversedString.append(tempArray.get(i));
-		}
-		return reversedString.toString();
-	}
+    public String reverse(String s) {
+        List<String> reversedCharacters = getReversedCharacters(s);
+
+        StringBuilder reversed = concatCharacters(reversedCharacters);
+
+        return reversed.toString();
+    }
+
+    private StringBuilder concatCharacters(List<String> tempArray) {
+        StringBuilder reversedString = new StringBuilder(tempArray.size());
+        for (int i = tempArray.size() - 1; i >= 0; i--) {
+            reversedString.append(tempArray.get(i));
+        }
+        return reversedString;
+    }
+
+    private List<String> getReversedCharacters(String s) {
+        List<String> tempArray = new ArrayList<>(s.length());
+        for (int i = 0; i < s.length(); i++) {
+            tempArray.add(s.substring(i, i + 1));
+        }
+        return tempArray;
+    }
 }
